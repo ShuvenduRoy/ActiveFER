@@ -1,0 +1,42 @@
+{
+  "model":
+  {
+    "architecture": "resnet18",
+    "target_classes": 7,
+    "is_pretrained": false,
+    "pretrained_model_path": "path_to_saved_pre_trained_model/last.pth",
+    "ispretrained": true
+  },
+  "train_parameters":
+  {
+    "lr": 0.01,
+    "batch_size": 20,
+    "n_epoch": 200,
+    "max_accuracy": 0.999,
+    "isreset": true,
+    "islogs": true,
+    "isverbose": true,
+    "logs_location": "./saved_models/FER13/logs.txt",
+    "seed": 0
+  },
+  "active_learning":
+  {
+    "strategy": "least_confidence",
+    "budget": 1435,
+    "rounds": 7,
+    "initial_points": 2870,
+    "strategy_args":
+    {
+      "batch_size": 20,
+      "lr": 0.01
+    }
+  },
+  "dataset":
+  {
+    "name": "FER13",
+    "dir": "data/FER13"
+  },
+  "save_name": "FER13",
+  "id": "1",
+  "save_dir": "./saved_models/FER13/"
+}

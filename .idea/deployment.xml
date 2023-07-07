@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="MIST" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false" showNewOnTargetInSync="false">
+    <option name="confirmBeforeUploading" value="false" />
+    <serverData>
+      <paths name="MIST">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/project_dir/XD/methods/DISTIL" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="shuvendu@mist.scinet.utoronto.ca:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/scratch/a/amiilab/shuvendu/project_dir/XD/methods/DISTIL" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
