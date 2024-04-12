@@ -3,7 +3,7 @@
  
 Official Of our ACII 2023 paper:
 
-> [**Active Learning with Contrastive Pre-training for Facial Expression Recognition**](https://arxiv.org/abs/2208.00544)      
+> [**Active Learning with Contrastive Pre-training for Facial Expression Recognition**](https://arxiv.org/abs/2307.02744)      
 > Shuvendu Roy, Ali Etemad       
 > *In Proceedings of the IEEE International Conference on Affective Computing and Intelligent Interaction (ACII), 2023*
 
