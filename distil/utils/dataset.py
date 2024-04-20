@@ -1,24 +1,15 @@
-import numpy as np
-from PIL import Image
 import os
-import os.path
-from typing import Any, Callable, Optional, Tuple
-
+from PIL import Image
 from torchvision.datasets.vision import VisionDataset
 
-
-class AffectDataset(VisionDataset):
+class ImageDataset(VisionDataset):
     def __init__(
-            self,
-            root: str,
-            train: bool = True,
-            transform: Optional[Callable] = None,
-            target_transform: Optional[Callable] = None,
-            download: bool = False,
+        self,
+        root: str,
+        train: bool = True,
+        transform: Optional[Callable] = None,
     ) -> None:
-
-        super(AffectDataset, self).__init__(root, transform=transform,
-                                      target_transform=target_transform)
+        super(ImageDataset, self).__init__(root, transform=transform)
 
         self.train = train  # training set or test set
         split = 'train' if self.train else 'val'
@@ -26,13 +17,13 @@ class AffectDataset(VisionDataset):
         self.data: Any = []
         self.targets = []
 
-        # now load the picked numpy arrays
-
-        self.data = np.load(os.path.join(self.root, '{}_data.npy'.format(split)))
-        # self.data = self.data.transpose((0, 3, 1, 2))  # convert to HWC
-        # print(self.data.shape)
-        self.targets = np.load(os.path.join(self.root, '{}_label.npy'.format(split)))
-        # print(self.targets.shape)
+        # Load images from folder
+        folders = os.listdir(os.path.join(self.root, split))
+        for idx, folder in enumerate(folders):
+            files = os.listdir(os.path.join(self.root, split, folder))
+            for file in files:
+                self.data.append(os.path.join(self.root, split, folder, file))
+                self.targets.append(idx)
 
     def __getitem__(self, index: int) -> Tuple[Any, Any]:
         """
@@ -42,19 +33,12 @@ class AffectDataset(VisionDataset):
         Returns:
             tuple: (image, target) where target is index of the target class.
         """
-        img, target = self.data[index], self.targets[index]
-
-        # doing this so that it is consistent with all other datasets
-        # to return a PIL Image
-        img = Image.fromarray(img)
+        img = Image.open(self.data[index])
 
         if self.transform is not None:
             img = self.transform(img)
 
-        if self.target_transform is not None:
-            target = self.target_transform(target)
-
-        return img, target
+        return img, self.targets[index]
 
     def __len__(self) -> int:
         return len(self.data)
